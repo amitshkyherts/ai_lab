@@ -1,26 +1,28 @@
 total_sticks = 13
 
 
-def nim(num_sticks):
-    # player's turn
-    global total_sticks
-    total_sticks -= num_sticks
-
-    # computer's turn
-    num = total_sticks % 4
+def nim(current_sticks):
+    num = current_sticks % 4
     if num == 0:
-        num = 1
+        num = 3
 
-    total_sticks = total_sticks - num
     return num
 
 
 while (total_sticks):
     print(f"remaining sticks: {total_sticks}")
-    n = int(input("pick: "))
-
-    if n < 0 or n > 3:
+    num_sticks = int(input("pick either 1, 2, or 3 sticks: "))
+    if num_sticks < 0 or num_sticks > 3:
         print("invalid num of sticks picked, try again")
         continue
 
-    print(f"the computer picked: {nim(n)}")
+    total_sticks -= num_sticks
+    if total_sticks == 0:
+        print("you win!")
+
+    computer = nim(total_sticks)
+    print(f"the computer picked: {computer}")
+    total_sticks -= computer
+    if total_sticks == 0:
+        print("computer wins!")
+
