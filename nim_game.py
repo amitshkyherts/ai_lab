@@ -7,7 +7,7 @@ def nim_best(current_sticks):
 
 
 def main():
-    total_sticks = 5
+    total_sticks = 29
 
     while (total_sticks > 0):
         print(f"remaining sticks: {total_sticks}")
