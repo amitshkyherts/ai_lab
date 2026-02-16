@@ -1,3 +1,5 @@
+#! /usr/bin/python3
+
 def nim_best(current_sticks):
     num = current_sticks % 4
     if num == 0:

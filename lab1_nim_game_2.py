@@ -1,3 +1,5 @@
+#! /usr/bin/python3
+
 class IPlayer:
     def __init__(self, name):
         self.name = name
