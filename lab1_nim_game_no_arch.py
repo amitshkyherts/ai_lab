@@ -14,7 +14,7 @@ def main():
     while (total_sticks > 0):
         print(f"remaining sticks: {total_sticks}")
         num_sticks = int(input("pick either 1, 2, or 3 sticks: "))
-        if num_sticks < 0 or num_sticks > 3 or num_sticks > total_sticks:
+        if num_sticks < 1 or num_sticks > 3 or num_sticks > total_sticks:
             print("invalid number of sticks picked, try again")
             continue
 
