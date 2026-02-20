@@ -16,8 +16,11 @@ class IPlayer:
 
 
 class Human(IPlayer):
-    def move(self, _: GameState, max_pick_num) -> int:
-        return int(input(f"{self.name} (from 1 to {max_pick_num}): "))
+    def move(self, state: GameState, max_pick_num) -> int:
+        while True:
+            move = int(input(f"{self.name} (from 1 to {max_pick_num}): "))
+            if move > 0 and move <= max_pick_num and move <= state.sticks:
+                return move
 
 
 class RandomMove(IPlayer):
@@ -33,11 +36,11 @@ class GameController:
                  fn_on_game_end: Callable[[IPlayer], None]):
         if num_sticks <= 0:
             raise ValueError(
-                    "Total number of sticks should be greater than 0!")
+                "Total number of sticks should be greater than 0!")
 
         if max_pick_num < 2:
             raise ValueError(
-                    "Max number of sticks that can be taken should be at least 2!")
+                "Max number of sticks that can be taken should be at least 2!")
 
         if len(players) < 2:
             raise ValueError("There should be at least 2 players!")
@@ -60,13 +63,5 @@ class GameController:
                     break
 
     def move_manager(self, player):
-        while True:
-            num_sticks = player.move(self.state, self.max_pick_num)
-            if num_sticks < 1 \
-                    or num_sticks > self.max_pick_num \
-                    or num_sticks > self.state.sticks:
-                print("Invalid number of sticks picked. Try again!")
-                continue
-            break
-
+        num_sticks = player.move(self.state, self.max_pick_num)
         self.state.sticks -= num_sticks

@@ -1,4 +1,4 @@
-class Problem:
+class IProblem:
     def start(self):
         pass
 
@@ -12,7 +12,7 @@ class Problem:
         pass
 
 
-def dfs(problem: Problem, node, visited=set()) -> list:
+def dfs(problem: IProblem, node, visited=set()) -> list:
     """
     Depth-first search
     """

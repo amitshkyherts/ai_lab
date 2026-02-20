@@ -2,7 +2,7 @@
 
 from typing import Generator
 from pprint import pp
-from problem import Problem, dfs
+from problem import IProblem, dfs
 
 
 type Person = tuple[str, int]
@@ -11,7 +11,7 @@ type PersonSideTup = tuple[Person, str]
 type HeroSidekickState = tuple[PersonSideDict, str]
 
 
-class HeroSidekick(Problem):
+class HeroSidekick(IProblem):
     def start(self) -> HeroSidekickState:
         return ({
             ("hero", 1): "left",
