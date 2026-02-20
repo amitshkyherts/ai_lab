@@ -12,7 +12,7 @@ type HeroSidekickState = tuple[PersonSideDict, str]
 
 
 class HeroSidekick(IProblem):
-    def start(self) -> HeroSidekickState:
+    def start_state(self) -> HeroSidekickState:
         return ({
             ("hero", 1): "left",
             ("kick", 1): "left",
@@ -105,7 +105,7 @@ class HeroSidekick(IProblem):
 
 def main():
     h = HeroSidekick()
-    pp(dfs(h, h.start()))
+    pp(dfs(h, h.start_state()))
 
 
 if __name__ == "__main__":

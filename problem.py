@@ -1,5 +1,5 @@
 class IProblem:
-    def start(self):
+    def start_state(self):
         pass
 
     def is_goal(self, state):
