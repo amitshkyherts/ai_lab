@@ -40,8 +40,8 @@ def bfs(problem: IProblem, candidates, visited=set()) -> list:
         return
 
     # candidates is a queue
-    c = candidates.pop(0)  # pop from the front
-    node = c[-1]           # must exist
+    path = candidates.pop(0)  # pop from the front
+    node = path[-1]           # the last node in the path is the current node
 
     token = problem.token(node)
     if token in visited:
@@ -50,10 +50,10 @@ def bfs(problem: IProblem, candidates, visited=set()) -> list:
     visited = visited.union(set([token]))
 
     if problem.is_goal(node):
-        return c
+        return path
 
     for next_node in problem.successor_states(node):
         if problem.token(next_node) not in visited:
-            candidates.append(c + [next_node])
+            candidates.append(path + [next_node])
 
     return bfs(problem, candidates, visited)
