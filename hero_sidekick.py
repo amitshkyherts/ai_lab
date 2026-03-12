@@ -103,7 +103,9 @@ class HeroSidekick(IProblem):
 
 def main():
     h = HeroSidekick()
-    # pp(dfs(h, h.start_state()))
+    print("Depth-First Search:")
+    pp(dfs(h, h.start_state()))
+    print("\nBreadth-First Search:")
     pp(bfs(h, [[h.start_state()]]))
 
 
