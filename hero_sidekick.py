@@ -18,8 +18,8 @@ class HeroSidekick(IProblem):
             ("kick", 1): "left",
             ("hero", 2): "left",
             ("kick", 2): "left",
-            ("hero", 3): "left",
-            ("kick", 3): "left",
+            # ("hero", 3): "left",
+            # ("kick", 3): "left",
         }, "left")
 
     def is_goal(self, state: HeroSidekickState) -> bool:
@@ -103,8 +103,8 @@ class HeroSidekick(IProblem):
 
 def main():
     h = HeroSidekick()
-    pp(dfs(h, h.start_state()))
-    # pp(bfs(h, [[h.start_state()]]))
+    # pp(dfs(h, h.start_state()))
+    pp(bfs(h, [[h.start_state()]]))
 
 
 if __name__ == "__main__":

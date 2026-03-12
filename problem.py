@@ -32,21 +32,28 @@ def dfs(problem: IProblem, node, visited=set()) -> list:
             return [node] + solution
 
 
-# ------------- NOT WORKING!!!!! ------------------
-def bfs(problem: IProblem, nodes) -> list:
+def bfs(problem: IProblem, candidates, visited=set()) -> list:
     """
     Breadth-first search
     """
-    if not nodes:
+    if not candidates:
         return
 
-    node = nodes.pop(0)  # pop from the front
-    n = node[-1]     # must exist
+    # candidates is a queue
+    c = candidates.pop(0)  # pop from the front
+    node = c[-1]           # must exist
 
-    if problem.is_goal(n):
-        return node
+    token = problem.token(node)
+    if token in visited:
+        return bfs(problem, candidates, visited)
 
-    for next_node in problem.successor_states(n):
-        nodes.append(node + [next_node])
+    visited = visited.union(set([token]))
 
-    return bfs(problem, nodes)
+    if problem.is_goal(node):
+        return c
+
+    for next_node in problem.successor_states(node):
+        if problem.token(next_node) not in visited:
+            candidates.append(c + [next_node])
+
+    return bfs(problem, candidates, visited)
