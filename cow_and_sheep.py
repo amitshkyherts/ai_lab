@@ -5,12 +5,12 @@ def successors(state):
     # keep only valid indices
     candidates = [c for c in candidates if c >= 0 and c < len(state)]
     candidates = [
-        c
+        c  # think of this as the current animal
         for c in candidates
-        if state[c:c+2]   == ['C', 'E']
-        or state[c-1:c+1] == ['E', 'S']
-        or state[c:c+3]   == ['C', 'S', 'E']
-        or state[c-2:c+1] == ['E', 'C', 'S']
+        if state[c:c+2] == ['C', 'E']  # if c is swapable with the next element
+        or state[c-1:c+1] == ['E', 'S']  # swapable with prev el
+        or state[c:c+3] == ['C', 'S', 'E']  # swapable with second el after
+        or state[c-2:c+1] == ['E', 'C', 'S']  # swapable with second el before
     ]
 
     for c in candidates:
@@ -31,7 +31,7 @@ def solution(state, goal_state):
 
 
 def main():
-    state      = ['C', 'C', 'E', 'S', 'S']
+    state = ['C', 'C', 'E', 'S', 'S']
     goal_state = ['S', 'S', 'E', 'C', 'C']
 
     for s in solution(state, goal_state):

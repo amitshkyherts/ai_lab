@@ -2,7 +2,7 @@
 
 from typing import Generator
 from pprint import pp
-from problem import IProblem, dfs
+from problem import IProblem, dfs, bfs
 
 
 type Person = tuple[str, int]
@@ -23,12 +23,10 @@ class HeroSidekick(IProblem):
         }, "left")
 
     def is_goal(self, state: HeroSidekickState) -> bool:
-        person_side: PersonSideDict
-        person_side, _ = state
-        for person in person_side:
-            if person_side[person] != "right":
+        for person in state[0]:
+            if state[0][person] != "right":
                 return False
-        return True
+        return len(state[0]) > 0
 
     def successor_states(self, state: HeroSidekickState) -> HeroSidekickState:
         """
@@ -106,6 +104,7 @@ class HeroSidekick(IProblem):
 def main():
     h = HeroSidekick()
     pp(dfs(h, h.start_state()))
+    # pp(bfs(h, [[h.start_state()]]))
 
 
 if __name__ == "__main__":
